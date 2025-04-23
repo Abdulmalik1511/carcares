@@ -1,3 +1,4 @@
+/*
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -26,10 +27,30 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Laith
+        Click on the Vite and React logos to learn more
       </p>
     </>
   )
 }
 
 export default App
+*/
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import RequestService from './pages/RequestService';
+import Confirmation from './pages/Confirmation';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/RequestService" element={<RequestService />} />
+        <Route path="/Confirmation" element={<Confirmation />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
