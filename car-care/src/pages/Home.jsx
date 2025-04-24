@@ -40,8 +40,8 @@ const Home = () => {
               {
                 title: "Tire Service",
                 desc: "We fix flat tires and offer tire rotations on-site.",
-                /*image: "/images/icons8-tire-100 (1).png",*/
-                image: "/images/images.jpeg",
+                image: "/images/icons8-tire-100 (1).png",
+                /*image: "/images/images.jpeg",*/
               },
             ].map((service) => (
               <div key={service.title} className="service-card">
