@@ -92,3 +92,14 @@ body {
     opacity: 1;
   }
 }
+.login-form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #f9fafb;
+  color: black; /* 👈 ADD THIS LINE */
+  transition: border 0.2s ease-in-out;
+}

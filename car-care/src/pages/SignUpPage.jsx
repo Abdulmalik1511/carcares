@@ -1,24 +1,33 @@
 // File: SignUpPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'; // Reuse the same styling
+import './LoginPage.css';
+import supabaseClient from '../services/supabaseClient'; // ✅ Correct path
 
 const SignUpPage = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    // TODO: Add sign-up logic here (e.g., send data to backend)
-    // On success:
-    navigate('/');
+    const { error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Signup successful! Check your email for verification.");
+      navigate('/'); // or navigate('/login') if you want
+    }
   };
 
   return (
@@ -26,11 +35,11 @@ const SignUpPage = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <label>
-          Username
+          Email
           <input
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
