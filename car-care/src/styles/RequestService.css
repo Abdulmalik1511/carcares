@@ -1,103 +1,198 @@
 .request-page {
-  background-color: #f1f5f9;
-  min-height: 100vh;
-  padding-top: 60px;
-  margin-top: 60px;
-}
-
-.request-container {
-  max-width: 2000px;
-  margin: 0 auto;
-  padding: 60px 20px;
-  background-color: #45457a; /* swapped */
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  width: 1000px;
-}
-
-.request-container h2 {
-  text-align: center;
-  color: #f1f5f9; /* swapped */
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.request-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.request-form label {
-  font-weight: bold;
-  color: #f1f5f9; /* swapped */
-}
-
-.request-form input,
-.request-form select,
-.request-form textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: inherit;
-  background-color: #f1f5f9; /* swapped */
-  color: #1a1a2e; /* ensure dark text on light background */
-}
-
-.plate-letters {
-  display: flex;
-  gap: 10px;
-}
-
-.submit-button {
-  background-color: #2385c4;
-  color: white;
-  font-weight: 600;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: #1e6ea5;
-}
-
-.car-brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 6px; /* decreased gap for closer layout */
-  justify-items: center;
-  padding: 10px 0; /* tighter padding */
-}
-
-.brand-box {
-  width: 90px; /* increased box size */
-  height: 90px; /* increased box size */
-  border: 2px solid transparent;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  background-color: #f1f5f9;
-  transition: 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-box img {
-  width: 80%; /* fills more space */
-  height: 80%; /* keeps aspect ratio balanced */
-  object-fit: contain;
-}
-
-.brand-box.selected {
-  border-color: #2385c4;
-  box-shadow: 0 0 12px 4px #2385c4;
-  transform: scale(1.1);
-  background-color: #e0f3ff; /* subtle background tint */
-  transition: transform 0.2s ease, box-shadow 0.3s ease,
-    background-color 0.3s ease;
-}
+    background-color: #f8d57e; /* Orange/yellow background like in reference */
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0; /* Remove the top margin */
+  }
+  
+  .request-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures the header doesn't overflow the border radius */
+    padding: 0; /* Remove padding to allow header to touch edges */
+  }
+  
+  .form-header {
+    background-color: #333333; /* Dark header like in the complaints form */
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .form-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  .form-header p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.9;
+  }
+  
+  .request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .request-form label {
+    font-weight: 500;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .required {
+    color: #e53935;
+    margin-left: 3px;
+  }
+  
+  .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 10px;
+    color: #757575;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .request-form input,
+  .request-form select,
+  .request-form textarea {
+    padding: 12px 12px 12px 35px; /* Extra padding for icon */
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #ffffff;
+    color: #333333;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  
+  .request-form input:focus,
+  .request-form select:focus,
+  .request-form textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #2385c4;
+  }
+  
+  .request-form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Special styling for date inputs */
+  input[type="date"] {
+    appearance: none;
+  }
+  
+  /* Plate letters styling */
+  .plate-letters {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .plate-letters select {
+    flex: 1;
+  }
+  
+  /* Car brand grid styling */
+  .car-brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    margin-top: 5px;
+  }
+  
+  .brand-box {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .brand-box img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+  
+  .brand-box.selected {
+    border-color: #2385c4;
+    box-shadow: 0 0 8px rgba(35, 133, 196, 0.5);
+    transform: scale(1.05);
+    background-color: #e0f3ff;
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    background-color: #d32f2f; /* Red button like in the complaints form */
+    color: white;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 25px; /* Rounded button */
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 20px;
+    align-self: center;
+    width: 150px;
+  }
+  
+  .submit-button:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .request-container {
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    .request-form {
+      padding: 20px;
+    }
+    
+    .car-brand-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
