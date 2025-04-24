@@ -1,0 +1,42 @@
+.confirmation-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f5f9;
+    padding: 20px;
+  }
+  
+  .confirmation-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .confirmation-box h2 {
+    color: #2385C4;
+    margin-bottom: 10px;
+  }
+  
+  .confirmation-box p {
+    margin: 8px 0;
+    color: #333;
+  }
+  
+  .back-home-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    background-color: #2385C4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .back-home-btn:hover {
+    background-color: #1a6ea5;
+  }
+  

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/RequestService.css";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 const RequestService = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,8 @@ const RequestService = () => {
     notes: "",
     carBrand: "",
   });
+
+  const navigate = useNavigate();
 
   const plateLetters = [
     "A أ",
@@ -35,10 +39,10 @@ const RequestService = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Request submitted successfully!");
-    console.log(formData); // Later, you will send this to Firebase or Supabase
+    console.log(formData); // You may send this to a backend later
+    navigate("/confirmation"); // Redirect to confirmation page
   };
-
+  
   return (
     <>
       <div className="request-page">
