@@ -12,9 +12,6 @@ const Home = () => {
         {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
-            <div><Link to="/admin">
-  <button className="admin-button">Go to Admin Page</button>
-</Link></div>
             <h1>We Bring Car Care to You 🚗🛠️</h1>
             <p>Book professional car services from the comfort of your home.</p>
             <Link to="/RequestService">
@@ -33,18 +30,18 @@ const Home = () => {
               {
                 title: "Oil Change",
                 desc: "Fast and affordable oil changes at your home.",
-                image: "public/images/icons8-oil-change-100.png"
+                image: "/images/icons8-oil-change-100.png", // Fixed property name
               },
               {
                 title: "Battery Replacement",
                 desc: "Get your battery replaced without visiting the garage.",
-                image: "public/images/icons8-battery-replacement-100.png",
+                image: "/images/icons8-battery-replacement-100.png",
               },
               {
                 title: "Tire Service",
                 desc: "We fix flat tires and offer tire rotations on-site.",
-                /*image: "/images/icons8-tire-100 (1).png",*/
-                image: "public/images/images.jpeg",
+                image: "/images/icons8-tire-100 (1).png",
+                /*image: "/images/images.jpeg",*/
               },
             ].map((service) => (
               <div key={service.title} className="service-card">
