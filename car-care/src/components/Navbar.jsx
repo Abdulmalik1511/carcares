@@ -1,7 +1,8 @@
+// File: Navbar.jsx
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import './Navbar.css'; // Import the CSS
+import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/RequestService", label: "Request Service" },
     { to: "/Confirmation", label: "My Bookings" },
+    { to: "/loginPage",      label: "Login" },         // ← new login link
   ];
 
   return (
@@ -21,13 +23,11 @@ const Navbar = () => {
         </div>
 
         <div className="nav-links desktop-only">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <Link
               key={item.to}
               to={item.to}
-              className={`nav-link ${
-                location.pathname === item.to ? 'active' : ''
-              }`}
+              className={`nav-link ${location.pathname === item.to ? 'active' : ''}`}
             >
               {item.label}
             </Link>
@@ -41,13 +41,11 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="mobile-menu">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <Link
               key={item.to}
               to={item.to}
-              className={`mobile-link ${
-                location.pathname === item.to ? 'active' : ''
-              }`}
+              className={`mobile-link ${location.pathname === item.to ? 'active' : ''}`}
               onClick={() => setIsOpen(false)}
             >
               {item.label}
