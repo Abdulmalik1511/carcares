@@ -67,6 +67,8 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
+
+    min-width: 120px
   }
   
   .service-card:hover {
@@ -108,4 +110,35 @@
   .secondary-button:hover {
     background-color: #1e6ea5;
   }
-  
+   
+
+/* This is for our Services section */
+.service-icon {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.service-card {
+  background-color: white;
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #1A1A2E;
+}
+
+.service-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
