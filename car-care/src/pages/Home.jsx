@@ -1,14 +1,15 @@
-import React from "react";
+import React from 'react';
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "../styles/Home.css"; // Custom CSS styling
+import '../styles/Home.css'; // Custom CSS styling
 
 const Home = () => {
   return (
     <div>
       <Navbar />
       <main className="home-container">
+
         {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
@@ -25,31 +26,13 @@ const Home = () => {
           <div className="section-header">
             <h2>Our Services</h2>
           </div>
-
           <div className="services-grid">
             {[
-              {
-                title: "Oil Change",
-                desc: "Fast and affordable oil changes at your home.",
-                icon: "/images/icons8-oil-change-66.png",
-              },
-              {
-                title: "Battery Replacement",
-                desc: "Get your battery replaced without visiting the garage.",
-                icon: "/images/icons8-battery-replacement-50 (1).png",
-              },
-              {
-                title: "Tire Service",
-                desc: "We fix flat tires and offer tire rotations on-site.",
-                icon: "/images/icons8-tire-50 (1).png",
-              },
+              { title: "Oil Change", desc: "Fast and affordable oil changes at your home." },
+              { title: "Battery Replacement", desc: "Get your battery replaced without visiting the garage." },
+              { title: "Tire Service", desc: "We fix flat tires and offer tire rotations on-site." },
             ].map((service) => (
               <div key={service.title} className="service-card">
-                <img
-                  src={service.icon}
-                  alt={`${service.title} icon`}
-                  className="service-icon"
-                />
                 <h3>{service.title}</h3>
                 <p>{service.desc}</p>
               </div>
@@ -63,14 +46,8 @@ const Home = () => {
             <h2>What Our Customers Say</h2>
           </div>
           <div className="testimonials-content">
-            <p>
-              "Amazing service! Booked an oil change from my couch and they
-              arrived in 20 mins!"
-            </p>
-            <p>
-              "Professional, quick, and clean — I didn’t have to move my car at
-              all!"
-            </p>
+            <p>"Amazing service! Booked an oil change from my couch and they arrived in 20 mins!"</p>
+            <p>"Professional, quick, and clean — I didn’t have to move my car at all!"</p>
           </div>
         </section>
 
@@ -84,6 +61,7 @@ const Home = () => {
             </Link>
           </div>
         </section>
+
       </main>
       <Footer />
     </div>

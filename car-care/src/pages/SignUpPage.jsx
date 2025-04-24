@@ -1,24 +1,30 @@
-// File: LoginPage.jsx
+// File: SignUpPage.jsx
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './LoginPage.css';
+import { useNavigate } from 'react-router-dom';
+import './LoginPage.css'; // Reuse the same styling
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
-    // TODO: add your auth logic here
-    // if success:
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // TODO: Add sign-up logic here (e.g., send data to backend)
+    // On success:
     navigate('/');
   };
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
         <label>
           Username
           <input
@@ -37,13 +43,19 @@ const LoginPage = () => {
             required
           />
         </label>
-        <button type="submit">Sign In</button>
-        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
-          Don’t have an account? <Link to="/signup">Sign Up</Link>
-        </p>
+        <label>
+          Confirm Password
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Create Account</button>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
