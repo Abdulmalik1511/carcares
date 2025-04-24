@@ -1,0 +1,40 @@
+.footer {
+    background-color: #1A1A2E;
+    color: #ffffff;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 1px solid #2c2c3a;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .footer .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .footer .brand {
+    color: #2385C4;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .footer .tagline {
+    color: #F1F5F9;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    opacity: 0.85;
+  }
+  
+  .footer p {
+    margin: 0.25rem 0;
+    transition: all 0.3s ease;
+  }
+  
+  .footer p:hover {
+    transform: scale(1.03);
+    color: #2385C4;
+  }
+  

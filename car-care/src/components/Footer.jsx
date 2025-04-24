@@ -1,13 +1,14 @@
 import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1A1A2E] text-white py-6 text-center">
-      <div className="max-w-7xl mx-auto px-4">
+    <footer className="footer">
+      <div className="content">
         <p className="text-sm">
-          © {new Date().getFullYear()} <span className="text-[#2385C4] font-semibold">CarCare</span>. All rights reserved.
+          © {new Date().getFullYear()} <span className="brand">CarCare</span>. All rights reserved.
         </p>
-        <p className="text-xs mt-1 text-[#F1F5F9]">Bringing car maintenance to your doorstep 🚗🛠️</p>
+        <p className="tagline">Bringing car maintenance to your doorstep 🚗🛠️</p>
       </div>
     </footer>
   );
