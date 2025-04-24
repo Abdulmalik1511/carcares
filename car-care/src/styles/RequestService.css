@@ -1,10 +1,10 @@
 .request-page {
-    background-color: #f1f5f9;
-    min-height: 100vh;
-    padding-top: 60px;
-    margin-top: 60px;
-  }
-  
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  padding-top: 60px;
+  margin-top: 60px;
+}
+
 .request-container {
   max-width: 2000px;
   margin: 0 auto;
@@ -17,7 +17,7 @@
 
 .request-container h2 {
   text-align: center;
-  color: #F1F5F9; /* swapped */
+  color: #f1f5f9; /* swapped */
   font-size: 2rem;
   margin-bottom: 2rem;
 }
@@ -30,7 +30,7 @@
 
 .request-form label {
   font-weight: bold;
-  color: #F1F5F9; /* swapped */
+  color: #f1f5f9; /* swapped */
 }
 
 .request-form input,
@@ -41,8 +41,8 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   font-family: inherit;
-  background-color: #F1F5F9; /* swapped */
-  color: #1A1A2E; /* ensure dark text on light background */
+  background-color: #f1f5f9; /* swapped */
+  color: #1a1a2e; /* ensure dark text on light background */
 }
 
 .plate-letters {
@@ -51,7 +51,7 @@
 }
 
 .submit-button {
-  background-color: #2385C4;
+  background-color: #2385c4;
   color: white;
   font-weight: 600;
   padding: 12px;
@@ -63,4 +63,41 @@
 
 .submit-button:hover {
   background-color: #1e6ea5;
+}
+
+.car-brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 6px; /* decreased gap for closer layout */
+  justify-items: center;
+  padding: 10px 0; /* tighter padding */
+}
+
+.brand-box {
+  width: 90px; /* increased box size */
+  height: 90px; /* increased box size */
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f1f5f9;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-box img {
+  width: 80%; /* fills more space */
+  height: 80%; /* keeps aspect ratio balanced */
+  object-fit: contain;
+}
+
+.brand-box.selected {
+  border-color: #2385c4;
+  box-shadow: 0 0 12px 4px #2385c4;
+  transform: scale(1.1);
+  background-color: #e0f3ff; /* subtle background tint */
+  transition: transform 0.2s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }

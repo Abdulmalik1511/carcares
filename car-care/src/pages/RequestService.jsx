@@ -107,6 +107,32 @@ const RequestService = () => {
                 ))}
               </select>
             </div>
+            <label>Select Car Brand</label>
+            <div className="car-brand-grid">
+              {[
+                { name: "Toyota", icon: "/images/icons8-toyota-480.png" },
+                { name: "Bmw", icon: "/images/icons8-bmw-480.png" },
+                { name: "Audi", icon: "/images/icons8-mercedes-480.png" },
+                { name: "Ford", icon: "/images/icons8-ford-480.png" },
+                { name: "Chevrolet", icon: "/images/icons8-chevrolet-480.png" },
+                { name: "Honda", icon: "/images/icons8-honda-500.png" },
+                { name: "Kia", icon: "/images/icons8-kia-480.png" },
+                { name: "Nissan", icon: "/images/icons8-nissan-480.png" },
+                { name: "Hyundai", icon: "/images/icons8-hyundai-480.png" },
+              ].map((brand) => (
+                <div
+                  key={brand.name}
+                  className={`brand-box ${
+                    formData.carBrand === brand.name ? "selected" : ""
+                  }`}
+                  onClick={() =>
+                    setFormData((prev) => ({ ...prev, carBrand: brand.name }))
+                  }
+                >
+                  <img src={brand.icon} alt={brand.name} />
+                </div>
+              ))}
+            </div>
 
             <label>Service Type</label>
             <select
