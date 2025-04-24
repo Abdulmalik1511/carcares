@@ -143,15 +143,15 @@ const RequestService = () => {
               <label>Select Car Brand <span className="required">*</span></label>
               <div className="car-brand-grid">
                 {[
-                  { name: "Toyota", icon: "/images/icons8-toyota-480.png" },
-                  { name: "Bmw", icon: "/images/icons8-bmw-480.png" },
-                  { name: "Audi", icon: "/images/icons8-mercedes-480.png" },
-                  { name: "Ford", icon: "/images/icons8-ford-480.png" },
-                  { name: "Chevrolet", icon: "/images/icons8-chevrolet-480.png" },
-                  { name: "Honda", icon: "/images/icons8-honda-500.png" },
-                  { name: "Kia", icon: "/images/icons8-kia-480.png" },
-                  { name: "Nissan", icon: "/images/icons8-nissan-480.png" },
-                  { name: "Hyundai", icon: "/images/icons8-hyundai-480.png" },
+                  { name: "Toyota", icon: "public/images/icons8-toyota-480.png" },
+                  { name: "Bmw", icon: "public/images/icons8-bmw-480.png" },
+                  { name: "Audi", icon: "public/images/icons8-mercedes-480.png" },
+                  { name: "Ford", icon: "public/images/icons8-ford-480.png" },
+                  { name: "Chevrolet", icon: "public/images/icons8-chevrolet-480.png" },
+                  { name: "Honda", icon: "public/images/icons8-honda-500.png" },
+                  { name: "Kia", icon: "public/images/icons8-kia-480.png" },
+                  { name: "Nissan", icon: "public/images/icons8-nissan-480.png" },
+                  { name: "Hyundai", icon: "public/images/icons8-hyundai-480.png" },
                 ].map((brand) => (
                   <div
                     key={brand.name}

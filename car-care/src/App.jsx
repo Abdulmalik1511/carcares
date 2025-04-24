@@ -1,6 +1,7 @@
 // File: src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AdminHome from './pages/AdminHome';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Confirmation"   element={<Confirmation />} />
         <Route path="/loginPage"      element={<LoginPage />} />    {/* ← add this */}
         <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/admin" element={<AdminHome />} />
 
         <Route path="*"               element={<Navigate to="/" replace />} />
       </Routes>

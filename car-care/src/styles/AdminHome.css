@@ -1,0 +1,157 @@
+.admin-home {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+  }
+  
+  .admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .admin-dashboard h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .highlight {
+    color: #2385C4;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+  }
+  
+  .admin-cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .admin-card {
+    background-color: #1a1a2e;
+    color: #f1f5f9;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .admin-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+  }
+  
+  .admin-card p {
+    font-size: 0.95rem;
+    color: #dbe4ea;
+    margin-bottom: 1.2rem;
+  }
+  
+  .admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .admin-button {
+    background-color: #2385C4;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .admin-button:hover {
+    background-color: #1a6da7;
+  }
+  .admin-home {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+  }
+  
+  .admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .admin-dashboard h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .highlight {
+    color: #2385C4;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+  }
+  
+  .admin-cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .admin-card {
+    background-color: #1a1a2e;
+    color: #f1f5f9;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .admin-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+  }
+  
+  .admin-card p {
+    font-size: 0.95rem;
+    color: #dbe4ea;
+    margin-bottom: 1.2rem;
+  }
+  
+  .admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .admin-button {
+    background-color: #2385C4;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .admin-button:hover {
+    background-color: #1a6da7;
+  }
+    
