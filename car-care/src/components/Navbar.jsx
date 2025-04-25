@@ -1,6 +1,6 @@
 // File: Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import './Navbar.css';
 import supabaseClient from '../services/supabaseClient';
@@ -8,13 +8,14 @@ import supabaseClient from '../services/supabaseClient';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInitial, setUserInitial] = useState(null);
+  const [session, setSession] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const {
-        data: { session },
-      } = await supabaseClient.auth.getSession();
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      setSession(session); // save session info for login/logout checks
 
       const userId = session?.user?.id;
       if (!userId) return;
@@ -31,7 +32,21 @@ const Navbar = () => {
     };
 
     fetchProfile();
+
+    // Listen for auth changes (login/logout live)
+    const { data: listener } = supabaseClient.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
   }, []);
+
+  const handleLogout = async () => {
+    await supabaseClient.auth.signOut();
+    navigate('/loginPage'); // Redirect after logout
+  };
 
   const navItems = [
     { to: "/", label: "Home" },
@@ -48,19 +63,30 @@ const Navbar = () => {
         </div>
 
         <div className="nav-links desktop-only">
-          {navItems.map(item => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={`nav-link ${location.pathname === item.to ? 'active' : ''}`}
-            >
-              {item.label}
-            </Link>
-          ))}
-          {userInitial && (
-            <div className="user-initial">
-              {userInitial}
-            </div>
+          {navItems
+            .filter(item => {
+              if (item.label === "Login" && session) return false; // Hide Login if logged in
+              return true;
+            })
+            .map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`nav-link ${location.pathname === item.to ? 'active' : ''}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+          {session && (
+            <>
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+              <div className="user-initial">
+                {userInitial}
+              </div>
+            </>
           )}
         </div>
 
@@ -71,16 +97,27 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="mobile-menu">
-          {navItems.map(item => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={`mobile-link ${location.pathname === item.to ? 'active' : ''}`}
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems
+            .filter(item => {
+              if (item.label === "Login" && session) return false;
+              return true;
+            })
+            .map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`mobile-link ${location.pathname === item.to ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+          {session && (
+            <button className="mobile-logout-btn" onClick={() => { handleLogout(); setIsOpen(false); }}>
+              Logout
+            </button>
+          )}
         </div>
       )}
     </nav>
