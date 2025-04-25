@@ -106,4 +106,23 @@
       display: block;
     }
   }
+  .user-initial {
+    width: 40px;
+    height: 40px;
+    background-color: #2385C4;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .user-initial:hover {
+    background-color: #1a6aa0;
+  }
   

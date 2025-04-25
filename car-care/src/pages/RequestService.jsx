@@ -5,29 +5,22 @@ import supabaseClient from "../services/supabaseClient";
 
 const RequestService = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    full_name: "",
     phone: "",
-    plateNumber: "",
-    plateLetter1: "",
-    plateLetter2: "",
-    serviceType: "",
-    date: "",
+    plate_letters: "",
+    car_brand: "",
+    service_type: "",
+    preferred_date: "",
     location: "",
     notes: "",
-    carBrand: "",
   });
+
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const plateLetters = [
-    "A أ", "B ب", "D د", "H ح", "M م", "R ر", "S س", "W و", "Y ي",
-  ];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Limit plate number length
-    if (name === "plateNumber" && !/^\d{0,5}$/.test(value)) return;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -36,44 +29,20 @@ const RequestService = () => {
     setErrorMsg("");
     setLoading(true);
 
-    // Get session & user
-    const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
-    const user = sessionData?.session?.user;
+    const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+    const user = session?.user;
+
     if (sessionError || !user) {
       setErrorMsg("You must be logged in to submit a request.");
       setLoading(false);
       return;
     }
 
-    // Prepare payload
-    // Fetch profile id from profiles table
-    const { data: profile, error: profileError } = await supabaseClient
-      .from('profiles')
-      .select('id')
-      .eq('id', user.id) // or .eq('user_id', user.id) if using separate user_id column
-      .single();
-
-    if (profileError) {
-      setErrorMsg(profileError.message);
-      setLoading(false);
-      return;
-    }
-
     const payload = {
-      user_id: profile.id,
-      full_name: formData.name,
-      phone: formData.phone,
-      plate_number: formData.plateNumber,
-      plate_letter1: formData.plateLetter1,
-      plate_letter2: formData.plateLetter2,
-      car_brand: formData.carBrand,
-      service_type: formData.serviceType,
-      preferred_date: formData.date,
-      location: formData.location,
-      notes: formData.notes,
+      user_id: user.id,
+      ...formData
     };
 
-    // Insert into service_requests
     const { error } = await supabaseClient
       .from("service_requests")
       .insert(payload);
@@ -85,6 +54,18 @@ const RequestService = () => {
       setSubmitted(true);
     }
   };
+
+  const carBrands = [
+    { name: "Toyota", icon: "public/images/icons8-toyota-480.png" },
+    { name: "Bmw", icon: "public/images/icons8-bmw-480.png" },
+    { name: "Audi", icon: "public/images/icons8-mercedes-480.png" },
+    { name: "Ford", icon: "public/images/icons8-ford-480.png" },
+    { name: "Chevrolet", icon: "public/images/icons8-chevrolet-480.png" },
+    { name: "Honda", icon: "public/images/icons8-honda-500.png" },
+    { name: "Kia", icon: "public/images/icons8-kia-480.png" },
+    { name: "Nissan", icon: "public/images/icons8-nissan-480.png" },
+    { name: "Hyundai", icon: "public/images/icons8-hyundai-480.png" },
+  ];
 
   return (
     <>
@@ -106,93 +87,47 @@ const RequestService = () => {
               {errorMsg && <p className="error-message">{errorMsg}</p>}
 
               <form onSubmit={handleSubmit} className="request-form">
-                {/* Full Name */}
                 <div className="form-group">
-                  <label>Full Name <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">👤</span>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
+                  <label>Full Name *</label>
+                  <input
+                    type="text"
+                    name="full_name"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                {/* Phone Number */}
                 <div className="form-group">
-                  <label>Phone Number <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">📱</span>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
+                  <label>Phone Number *</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                {/* Plate Number */}
                 <div className="form-group">
-                  <label>Plate Number (Max 5 digits) <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">🔢</span>
-                    <input
-                      type="text"
-                      name="plateNumber"
-                      value={formData.plateNumber}
-                      onChange={handleChange}
-                      required
-                      placeholder="e.g. 12345"
-                    />
-                  </div>
+                  <label>Plate Letters *</label>
+                  <input
+                    type="text"
+                    name="plate_letters"
+                    value={formData.plate_letters}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                {/* Plate Letters */}
                 <div className="form-group">
-                  <label>Plate Letters</label>
-                  <div className="plate-letters">
-                    {[1, 2].map((_, idx) => (
-                      <div className="input-with-icon" key={idx}>
-                        <span className="input-icon">🔤</span>
-                        <select
-                          name={`plateLetter${idx + 1}`}
-                          value={formData[`plateLetter${idx + 1}`]}
-                          onChange={handleChange}
-                        >
-                          <option value="">--</option>
-                          {plateLetters.map((letter) => (
-                            <option key={letter} value={letter}>{letter}</option>
-                          ))}
-                        </select>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Car Brand */}
-                <div className="form-group">
-                  <label>Select Car Brand <span className="required">*</span></label>
+                  <label>Select Car Brand *</label>
                   <div className="car-brand-grid">
-                    {[
-                      { name: "Toyota", icon: "public/images/icons8-toyota-480.png" },
-                      { name: "Bmw", icon: "public/images/icons8-bmw-480.png" },
-                      { name: "Audi", icon: "public/images/icons8-mercedes-480.png" },
-                      { name: "Ford", icon: "public/images/icons8-ford-480.png" },
-                      { name: "Chevrolet", icon: "public/images/icons8-chevrolet-480.png" },
-                      { name: "Honda", icon: "public/images/icons8-honda-500.png" },
-                      { name: "Kia", icon: "public/images/icons8-kia-480.png" },
-                      { name: "Nissan", icon: "public/images/icons8-nissan-480.png" },
-                      { name: "Hyundai", icon: "public/images/icons8-hyundai-480.png" },
-                    ].map((brand) => (
+                    {carBrands.map((brand) => (
                       <div
                         key={brand.name}
-                        className={`brand-box ${formData.carBrand === brand.name ? "selected" : ""}`}
-                        onClick={() => setFormData((prev) => ({ ...prev, carBrand: brand.name }))}
+                        className={`brand-box ${formData.car_brand === brand.name ? "selected" : ""}`}
+                        onClick={() => setFormData((prev) => ({ ...prev, car_brand: brand.name }))}
                       >
                         <img src={brand.icon} alt={brand.name} />
                       </div>
@@ -200,66 +135,50 @@ const RequestService = () => {
                   </div>
                 </div>
 
-                {/* Service Type */}
                 <div className="form-group">
-                  <label>Service Type <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">🔧</span>
-                    <select
-                      name="serviceType"
-                      value={formData.serviceType}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select a service</option>
-                      <option value="Oil Change">Oil Change</option>
-                      <option value="Battery Replacement">Battery Replacement</option>
-                      <option value="Tire Service">Tire Service</option>
-                    </select>
-                  </div>
+                  <label>Service Type *</label>
+                  <select
+                    name="service_type"
+                    value={formData.service_type}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select a service</option>
+                    <option value="Oil Change">Oil Change</option>
+                    <option value="Battery Replacement">Battery Replacement</option>
+                    <option value="Tire Service">Tire Service</option>
+                  </select>
                 </div>
 
-                {/* Preferred Date */}
                 <div className="form-group">
-                  <label>Preferred Date <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">📅</span>
-                    <input
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
+                  <label>Preferred Date *</label>
+                  <input
+                    type="date"
+                    name="preferred_date"
+                    value={formData.preferred_date}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                {/* Location */}
                 <div className="form-group">
-                  <label>Location <span className="required">*</span></label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">📍</span>
-                    <input
-                      type="text"
-                      name="location"
-                      value={formData.location}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
+                  <label>Location *</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                {/* Notes */}
                 <div className="form-group">
                   <label>Notes (Optional)</label>
-                  <div className="input-with-icon">
-                    <span className="input-icon">📝</span>
-                    <textarea
-                      name="notes"
-                      value={formData.notes}
-                      onChange={handleChange}
-                    />
-                  </div>
+                  <textarea
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <button type="submit" className="submit-button" disabled={loading}>
