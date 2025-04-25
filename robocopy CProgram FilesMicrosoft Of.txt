@@ -1,0 +1,3 @@
+robocopy "C:\Program Files\Microsoft Office 15" "D:\Microsoft Office 15" /sec /move /e
+
+mklink "C:\Program Files\Microsoft Office 15" "D:\Microsoft Office 15" /j

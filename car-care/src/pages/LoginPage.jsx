@@ -2,32 +2,50 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './LoginPage.css';
+import supabaseClient from '../services/supabaseClient';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    // TODO: add your auth logic here
-    // if success:
-    navigate('/');
+    setErrorMsg('');
+    setLoading(true);
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setLoading(false);
+    if (error) {
+      setErrorMsg(error.message);
+    } else {
+      navigate('/');
+    }
   };
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+
+        {errorMsg && <p className="error-message">{errorMsg}</p>}
+
         <label>
-          Username
+          Email
           <input
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
+
         <label>
           Password
           <input
@@ -37,7 +55,11 @@ const LoginPage = () => {
             required
           />
         </label>
-        <button type="submit">Sign In</button>
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing In...' : 'Sign In'}
+        </button>
+
         <p style={{ marginTop: '1rem', textAlign: 'center' }}>
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </p>
