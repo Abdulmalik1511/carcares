@@ -7,7 +7,9 @@ const RequestService = () => {
   const [formData, setFormData] = useState({
     full_name: "",
     phone: "",
-    plate_letters: "",
+    plate_number: "",
+    plate_letter1: "",
+    plate_letter2: "",
     car_brand: "",
     service_type: "",
     preferred_date: "",
@@ -18,6 +20,18 @@ const RequestService = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const plateLetters = [
+    "A أ",
+    "B ب",
+    "D د",
+    "H ح",
+    "M م",
+    "R ر",
+    "S س",
+    "W و",
+    "Y ي",
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +54,7 @@ const RequestService = () => {
 
     const payload = {
       user_id: user.id,
-      ...formData
+      ...formData,
     };
 
     const { error } = await supabaseClient
@@ -109,16 +123,56 @@ const RequestService = () => {
                   />
                 </div>
 
+                {/* 🌟 Added Plate Section */}
                 <div className="form-group">
-                  <label>Plate Letters *</label>
+                  <label>Plate Number (Max 5 digits) *</label>
                   <input
                     type="text"
-                    name="plate_letters"
-                    value={formData.plate_letters}
-                    onChange={handleChange}
+                    name="plate_number"
+                    value={formData.plate_number}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (/^\d{0,5}$/.test(value)) {
+                        setFormData((prev) => ({ ...prev, plate_number: value }));
+                      }
+                    }}
                     required
+                    placeholder="e.g. 12345"
                   />
                 </div>
+
+                <div className="form-group">
+                  <label>Plate Letters *</label>
+                  <div className="plate-letters">
+                    <select
+                      name="plate_letter1"
+                      value={formData.plate_letter1}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">--</option>
+                      {plateLetters.map((letter) => (
+                        <option key={letter} value={letter}>
+                          {letter}
+                        </option>
+                      ))}
+                    </select>
+
+                    <select
+                      name="plate_letter2"
+                      value={formData.plate_letter2}
+                      onChange={handleChange}
+                    >
+                      <option value="">--</option>
+                      {plateLetters.map((letter) => (
+                        <option key={letter} value={letter}>
+                          {letter}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                {/* End Plate Section 🌟 */}
 
                 <div className="form-group">
                   <label>Select Car Brand *</label>
