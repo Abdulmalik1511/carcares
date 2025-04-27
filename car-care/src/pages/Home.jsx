@@ -12,14 +12,40 @@ const Home = () => {
         {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
-            <div><Link to="/admin">
-  <button className="admin-button">Go to Admin Page</button>
-</Link></div>
+            <div>
+              <Link to="/admin"></Link>
+            </div>
+
             <h1>We Bring Car Care to You 🚗🛠️</h1>
             <p>Book professional car services from the comfort of your home.</p>
-            <Link to="/RequestService">
-              <button className="primary-button">Request a Service</button>
-            </Link>
+            <div className="button-group">
+              <p className="para1">Start your booking now and get service at your doorstep!</p>
+              <Link to="/RequestService">
+                <button className="read-more-button">
+                  <span>BOOK NOW</span>
+                  <div className="arrow-circle">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="20" 
+                      height="20" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </div>
+                </button>
+              </Link>
+              {/*
+              <Link to="/AdminPage">
+                <button className="admin-button">Go to Admin Page</button>
+              </Link>
+              */}
+            </div>
           </div>
         </section>
 
@@ -33,7 +59,7 @@ const Home = () => {
               {
                 title: "Oil Change",
                 desc: "Fast and affordable oil changes at your home.",
-                image: "public/images/icons8-oil-change-100.png"
+                image: "public/images/icons8-oil-change-100.png",
               },
               {
                 title: "Battery Replacement",
@@ -44,7 +70,6 @@ const Home = () => {
                 title: "Tire Service",
                 desc: "We fix flat tires and offer tire rotations on-site.",
                 image: "public/images/icons8-tire-100 (1).png",
-
               },
             ].map((service) => (
               <div key={service.title} className="service-card">
@@ -76,17 +101,6 @@ const Home = () => {
               "Professional, quick, and clean — I didn't have to move my car at
               all!"
             </p>
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="cta-section">
-          <div className="cta-content">
-            <h2>Need a Car Fix?</h2>
-            <p>Start your booking now and get service at your doorstep!</p>
-            <Link to="/RequestService">
-              <button className="secondary-button">Book Now</button>
-            </Link>
           </div>
         </section>
       </main>

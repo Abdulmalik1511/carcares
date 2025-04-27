@@ -52,6 +52,7 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/RequestService", label: "Request Service" },
     { to: "/Confirmation", label: "My Bookings" },
+    { to: "/AdminPage", label: "Go to Admin Page" },
     { to: "/loginPage", label: "Login" },
   ];
 
